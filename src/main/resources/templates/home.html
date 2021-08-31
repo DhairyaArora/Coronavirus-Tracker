@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="Container" style ="background:url('https://lh3.googleusercontent.com/proxy/E9JVqb4BTuthTBYj1Yno20fB0uaYSlUqU_bM3PegvsIQmhRACN3EAPH8MxLrnfuRwHUs6Lxr8aPyz-wAPut4VQwJGyyXMIQRsiJbjYymfnwX6Inj9C6lHJuiPoI7C0oCnZJIdufXHW7M');background-repeat:repeat-y;background-size:100vw 300px;">
+    <h1 align="center" style="padding-top:2%">Coronavirus Tracker Application </h1>
+    <p align="center">  This application lists the current number of Covid19 cases reported across the globe </p>
+    
+    <div class="jumbotron">
+        <h1 class="display-4" align="center" th:text="${totalReportedCases}"></h1>
+        <p class="lead" align="center"> Total cases reported as of today</p>
+        <hr class="my-4">
+        <p style="color:red" align="center">
+            <span>New cases reported since yesterday:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+    </div>
+    <p th:text="${testname}"></p>
+    <table class="table">
+        <tr>
+            <th style="text-align:center" >State</th>
+            <th style="text-align:center">Country</th>
+            <th style="text-align:center"> Total cases Reported</th>
+            <th style="text-align:center">Increase since Previous Day</th>
+        </tr>
+        <tr th:each="locationstat : ${locationstats}">
+            <td align="center" th:text="${locationstat.state}"></td>
+            <td align="center" th:text="${locationstat.country}"></td>
+            <td align="center"  th:text="${locationstat.Latesttotalcases}">0</td>
+<!--        <td th:style="${locationstat.Latesttotalcases > 0 ? 'color: red;' : 'color: green;'}}" th:text="${locationstat.Latesttotalcases}">0</td>-->
+            <td align="center" th:text="${locationstat.diffrompreviousday}">0</td>
+        </tr>
+    </table>
+</div>
+
+
+</body>
+
+</html>
